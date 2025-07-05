@@ -69,7 +69,7 @@
 | User (Sender) → Message | 1:M | One user can send multiple messages |
 | User (Recipient) → Message | 1:M | One user can receive multiple messages |
 
-[Er Diagram](./Diagram.png)
+![Er Diagram](./Diagram.png)
 
 ## Constraints
 
