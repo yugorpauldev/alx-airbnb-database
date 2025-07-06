@@ -1,29 +1,34 @@
-# Task 0: Write Complex Queries with Joins
+# Task Summary – Airbnb Advanced SQL
 
-## ✅ Objective
+## Task 0: Write Complex Queries with Joins
+- Practice INNER JOIN, LEFT JOIN, and FULL OUTER JOIN
+- Use JOINs to combine data from `User`, `Booking`, `Property`, and `Review` tables
+- Learn how to include unmatched records (LEFT/FULL OUTER JOIN)
 
-Learn how to combine data from multiple tables using SQL JOINs. This task focuses on INNER JOIN, LEFT JOIN, and FULL OUTER JOIN to connect tables like `User`, `Booking`, `Property`, and `Review`.
+## Task 1: Practice Subqueries
+- Use correlated subqueries to:
+  - Find properties with average rating > 4.0
+  - Find users with more than 3 bookings
 
----
+## Task 2: Apply Aggregations and Window Functions
+- Use `COUNT` and `GROUP BY` to get total bookings per user
+- Use `RANK()` and `ROW_NUMBER()` to rank properties by number of bookings
 
-## 🔧 What You’ll Learn
+## Task 3: Implement Indexes for Optimization
+- Identify frequently queried columns
+- Use `CREATE INDEX` to improve performance
+- Use `EXPLAIN` or `ANALYZE` to compare before and after
 
-- The structure and purpose of JOINs
-- How to write INNER JOINs to get matching records from two tables
-- How to use LEFT JOINs to include unmatched rows from the left table
-- How to use FULL OUTER JOINs to include all rows from both tables
+## Task 4: Optimize Complex Queries
+- Write and refactor multi-table queries
+- Eliminate unnecessary joins and check performance with `EXPLAIN`
 
----
+## Task 5: Partitioning Large Tables
+- Use `PARTITION BY RANGE` on the `Booking` table (based on `start_date`)
+- Test performance improvements for date-range queries
 
-## 🔍 JOIN Types Used
-
-### 🔹 INNER JOIN
-Returns only the records that have matching values in both tables.
-
-### 🔸 LEFT JOIN
-Returns all records from the left table, and matched records from the right table. If no match, returns NULLs.
-
-### 🔻 FULL OUTER JOIN
-Returns all records when there is a match in one of the tables. If there’s no match, the missing side returns NULL.
+## Task 6: Monitor and Refine Performance
+- Use `EXPLAIN ANALYZE` or `SHOW PROFILE` to detect bottlenecks
+- Suggest indexes or schema improvements and report observed gains
 
 ---
