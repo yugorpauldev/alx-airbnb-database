@@ -2,8 +2,9 @@
 -- File: perfomance.sql
 
 -- STEP 1: Initial Complex Query (Before Optimization)
--- Retrieves bookings with user, property, and payment details
+-- Includes WHERE clause to simulate realistic filtering
 
+EXPLAIN ANALYZE
 SELECT
     b.id AS booking_id,
     b.start_date,
@@ -19,18 +20,21 @@ SELECT
 FROM bookings b
 INNER JOIN users u ON b.user_id = u.id
 INNER JOIN properties p ON b.property_id = p.id
-INNER JOIN payments pay ON b.payment_id = pay.id;
+INNER JOIN payments pay ON b.payment_id = pay.id
+WHERE b.start_date >= '2023-01-01' AND b.end_date <= '2023-12-31';
 
 -- STEP 2: Index Creation (Optimization Strategy)
--- These indexes improve JOIN performance on foreign key columns
+-- These indexes improve JOIN performance and WHERE clause filtering
 
 CREATE INDEX IF NOT EXISTS idx_bookings_user_id ON bookings(user_id);
 CREATE INDEX IF NOT EXISTS idx_bookings_property_id ON bookings(property_id);
 CREATE INDEX IF NOT EXISTS idx_bookings_payment_id ON bookings(payment_id);
+CREATE INDEX IF NOT EXISTS idx_bookings_start_end_date ON bookings(start_date, end_date);
 
 -- STEP 3: Optimized Query (After Indexes Added)
--- Same logic as original query, but now uses indexes for faster joins
+-- Same logic as before, but should now use indexes for joins and filtering
 
+EXPLAIN ANALYZE
 SELECT
     b.id AS booking_id,
     b.start_date,
@@ -46,4 +50,5 @@ SELECT
 FROM bookings b
 INNER JOIN users u ON b.user_id = u.id
 INNER JOIN properties p ON b.property_id = p.id
-INNER JOIN payments pay ON b.payment_id = pay.id;
+INNER JOIN payments pay ON b.payment_id = pay.id
+WHERE b.start_date >= '2023-01-01' AND b.end_date <= '2023-12-31';
